@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="col-lg-6">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3>{{titulo}}</h3>
+      </div>
+      <div class="panel-body">
+        <p>
+            <label>Nombre</label>
+            <label class="form-control">{{formulasFiltro[0]?.usuario.name}}</label>	  
+        </p>
+        <p>
+            <label>Apellidos</label>
+            <label class="form-control">{{formulasFiltro[0]?.usuario.surname}}</label>	
+        </p>
+        <p>
+            <label>Correo electronico</label>	
+            <label class="form-control">{{formulasFiltro[0]?.usuario.email}}</label>	
+        </p>
+        <p>
+            <label>Número de empleado</label>	
+            <label class="form-control">{{formulasFiltro[0]?.usuario.numero}}</label>	
+        </p>
+        <p>
+            
+            <label>Departamento</label>
+            <label class="form-control">{{formulasFiltro[0]?.usuario.departamento}}</label>		  
+        </p>
+        <p>
+            <label>Formulas creadas</label>	
+            <label class="form-control">{{formulasFiltro.length}}</label>	
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

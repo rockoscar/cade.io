@@ -1,0 +1,28 @@
+<!--
+<input type="text" name="densidad1" #densidad1="ngModel" [(ngModel)]="cambio.densidad" class="form-control" placeholder="Densidad" required />
+<input type="text" name="1" #brillo1="ngModel" [(ngModel)]="cambio.brillo" class="form-control" placeholder="Brillo" required />
+  
+  -->
+<p>
+</p>
+<span *ngIf=recibecambio>
+<form #cambioForm="ngForm" (ngSubmit)="guardar()">
+          <div class="form-group">
+             <div class="alert alert-primary" role="alert">
+               Formula para cambiar
+            </div>
+             <div class="alert alert-dark" role="alert">
+               {{ formGral.formGral.numForm }}
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Densidad</label>
+            <input type="text" name="densidad" #densidad="ngModel" [(ngModel)]="cambio.densidad" class="form-control" placeholder="Densidad" required />
+          </div>
+          <div class="form-group">
+            <label>Brillosidad</label>
+            <input type="text" name="brillo" #brillo="ngModel" [(ngModel)]="cambio.brillo" class="form-control" placeholder="Brillo" required />
+          </div>
+          <button type="submit" class="btn btn-primary">Guardar</button>
+        </form>
+        </span>

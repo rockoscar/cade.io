@@ -1,0 +1,197 @@
+<div class="row">
+  <div class="col-lg-2">
+    <!--
+<form #buscaForm="ngForm">
+  -->
+  <form #buscaForm="ngForm" (submit)="resetFiltros()" *ngIf="!oculta">
+  <div class="panel panel-primary">
+	<div class="panel-heading">
+		<div class="row">
+			<div class="col">
+				<h4>{{titulo}}</h4>
+			</div>
+			<div class="col text-right">
+	
+				<button (click)="Oculta()" class="btn btn-primary">
+	       <span class="glyphicon glyphicon-stats" aria-hidden="true"></span>
+	       </button>
+	           </div>
+         </div>
+       </div>
+       <div class="panel-body">
+        <div class="form-group">
+          <input class="form-control" type="text" name="busca"  [(ngModel)]="buscaform"
+          placeholder="Código">
+        </div>
+        <div class="form-group">
+          <input class="form-control" type="text" name="Blote"  [(ngModel)]="Blote"
+          placeholder="Lote"  >
+        </div>
+        <div class="form-group">
+            <label>Estatus</label>
+              <select class="form-control" name="color" #color="ngModel" [(ngModel)]="estatus" required>
+              <option>Aprobada</option>
+              <option>Pendiente</option>
+              <option>Pasta</option>
+              </select>
+          </div>
+        <div class="form-group">
+          <input class="form-control" type="text" name="Belaborado"  [(ngModel)]="Belaborado"
+          placeholder="Elaborado por">
+        </div>
+        <div class="form-group">
+          <label>Fecha de inicio </label>
+          <input class="form-control" type="date" name="fecha" [(ngModel)]="fecha"
+          placeholder="Fecha inicio"  >
+        </div>
+        <div class="form-group">
+          <label>Fecha de final </label>
+          <input class="form-control" type="date" name="fechaterm" [(ngModel)]="fechatermino"
+          placeholder="Fecha termino" >
+        </div>
+        <div class="form-group">
+          <input class="form-control" type="text" name="codR"  [(ngModel)]="codRan"
+          placeholder="Código inicio">
+        </div>
+        <div class="form-group">
+          <input class="form-control" type="text" name="codRFin"  [(ngModel)]="codRanFin"
+          placeholder="Código final">
+        </div>
+        
+        <input type="submit" value="Borrar Filtros" class="btn btn-lg btn-danger btn-block" />
+        <!--
+         <button 
+        class="btn btn-lg btn-danger btn-block" 
+         (click)="resetFiltros(buscaForm)">Borrar filtros
+        </button>
+         -->
+  </div>
+      </div>
+      </form>
+      <form #buscaForm="ngForm" *ngIf="oculta" >
+  <div class="panel panel-primary">
+	<div class="panel-heading">
+		<div class="row">
+			<div class="col-sm-6">
+				<h4>{{titulo3}}</h4>
+			</div>
+			<div class="col-sm-6 text-right">
+	
+				<button (click)="Oculta()" class="btn btn-primary btn-sm">
+	       <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
+	       </button>
+	           </div>
+	         </div>
+	       </div>
+       <div class="panel-body">
+         <div class="form-group">
+         <label class="form-control" *ngIf=formulas >Total formulas: {{ formulas | buscar:buscaform | buscaLote: Blote | buscaElaborado: Belaborado | fecha: fecha | fechaterm: fechatermino |  codRan: codRan   | codRanFin: codRanFin | estatus: estatus | totalFormulas }}</label>		  
+        </div>
+        <div class="form-group">
+         <label class="form-control" *ngIf=formulas >Total análisis: {{ formulas | buscar:buscaform | buscaLote: Blote | buscaElaborado: Belaborado | fecha: fecha | fechaterm: fechatermino |  codRan: codRan   | codRanFin: codRanFin | estatus: estatus | sumaAnalisis: 'ncambios' }}</label>		  
+        </div>
+        <div class="form-group">
+         <label class="form-control" *ngIf=formulas >Total rechazos: {{ formulas | buscar:buscaform | buscaLote: Blote | buscaElaborado: Belaborado | fecha: fecha | fechaterm: fechatermino |  codRan: codRan   | codRanFin: codRanFin | estatus: estatus | sumaR: 'rechazos' }}</label>		  
+        </div>
+        <div class="form-group">
+         <label class="form-control" *ngIf=formulas >Promedio de análisis: {{ formulas | buscar:buscaform | buscaLote: Blote | buscaElaborado: Belaborado | fecha: fecha | fechaterm: fechatermino |  codRan: codRan   | codRanFin: codRanFin | estatus: estatus | promeR: 'rechazos' }}</label>		  
+        </div>
+        <div class="form-group">
+         <label class="form-control" *ngIf=formulas >Bien a la primera: {{ formulas | buscar:buscaform | buscaLote: Blote | buscaElaborado: Belaborado | fecha: fecha | fechaterm: fechatermino |  codRan: codRan   | codRanFin: codRanFin | estatus: estatus | bienPrimera }}</label>		  
+        </div>
+        <div class="form-group">
+         <label class="form-control" *ngIf=formulas >Bien a la primera: {{ formulas | buscar:buscaform | buscaLote: Blote | buscaElaborado: Belaborado | fecha: fecha | fechaterm: fechatermino |  codRan: codRan   | codRanFin: codRanFin | estatus: estatus | bienPrimeraPorcen }} %</label>		  
+        </div>
+        <div class="form-group">
+         <label class="form-control" *ngIf=formulas >Bien a la segunda: {{ formulas | buscar:buscaform | buscaLote: Blote | buscaElaborado: Belaborado | fecha: fecha | fechaterm: fechatermino |  codRan: codRan   | codRanFin: codRanFin | estatus: estatus | bienSegunda }}</label>		  
+        </div>
+        <div class="form-group">
+         <label class="form-control" *ngIf=formulas >Bien a la segunda: {{ formulas | buscar:buscaform | buscaLote: Blote | buscaElaborado: Belaborado | fecha: fecha | fechaterm: fechatermino |  codRan: codRan   | codRanFin: codRanFin | estatus: estatus | bienSegundaPorcen }} %</label>		  
+        </div>
+  </div>
+      </div>
+      </form>
+  </div>
+     <div class="col-lg-10">
+       <div class="panel panel-primary">
+          <div class="panel-heading">
+     <h4>{{titulo2}} <strong></strong></h4>
+       </div>
+       <div class="panel-body">
+         <!-- esta clase hace que la tabla se haga resonsiva y pone el scroll lateral -->
+         <div class="table-responsive">
+      <table class="table table-hover header-fixed">
+        <!--cabecera de la tabla -->
+        <thead class="thead">
+            <!--fila de la cabecera -->
+            <tr>
+                <!--elementos de la cabe -->
+                <th>Fecha de registro</th>
+                <th>Elaborado por</th>
+                <th>Rechazos</th>
+                <th>Estatus</th>
+                <th>Código</th>
+                <th>Lote</th>
+                <th>Hr 1 Analisis</th>
+                <th>Fecha liberación</th>
+                <th>Hora liberación</th>
+                <th>1 Evaluación</th>
+                <th>2 Evaluación</th>
+                <th>3 Evaluación</th>
+                <th>4 Evaluación</th>
+                <th>5 Evaluación</th>
+                <th>6 Evaluación</th>
+                <th>7 Evaluación</th>
+                <th>8 Evaluación</th>
+                <th>9 Evaluación</th>
+                <th>10 Evaluación</th>
+            </tr>
+        </thead>
+        <!--creamos cuerpo de tabla -->
+        <tbody>
+            <!--va mostrar los elementos que le permita el for, numeros esta declarado en el ts
+            y con el index va mostrando los numeros del arreglo numeros
+
+
+            <td>{{ formula.fechaLIb }}</td>
+                <td>{{ formula.horaLIb }}</td>
+
+               <tr *ngFor='let formula of formulas  | buscarS:buscaform '>
+                 ng-repeat='formula in formulas = (formulas | buscarS:buscaform)'
+                 | buscar: buscaform | buscaLote: Blote | buscaElaborado: Belaborado | fecha: fecha | fechaterm: fechatermino
+            -->
+
+            <tr *ngFor="let formula of formulas  | buscaLote: Blote | buscaElaborado: Belaborado | fecha: fecha | fechaterm: fechatermino  | codRan: codRan   | codRanFin: codRanFin | estatus: estatus | buscar: buscaform">
+              
+                <!--datos, en primero agregamos el index del for -->
+                <td>{{formula.cambio[0].fecha}}</td>
+                <td>{{formula.usuario.name}}</td>
+                <td>{{ formula.rechazos }}</td>
+                <td>{{ formula.status }}</td>
+                <td>{{ formula.codigo }}</td>
+                <td>{{ formula.lote }}</td>
+                <td>{{formula.cambio[0].hora}}</td>
+                <td>{{ formula.fechaLIb }}</td>
+                <td>{{ formula.horaLIb }}</td>
+                <td>{{ formula.c1 }}</td>
+                <td>{{ formula.c2 }}</td>
+                <td>{{ formula.c3 }}</td>
+                <td>{{ formula.c4 }}</td>
+                <td>{{ formula.c5 }}</td>
+                <td>{{ formula.c6 }}</td>
+                <td>{{ formula.c7 }}</td>
+                <td>{{ formula.c8 }}</td>
+                <td>{{ formula.c9 }}</td>
+                <td>{{ formula.c10  }}</td>
+                
+            </tr>
+           
+        </tbody>
+    </table>
+
+         </div>
+
+       </div>
+       </div>
+     </div>
+</div>

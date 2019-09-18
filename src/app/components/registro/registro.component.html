@@ -1,0 +1,73 @@
+
+<div class="container">
+  <div class="alert alert-success" *ngIf="status == 'Exitoso'">
+        Registro exitoso, <a [routerLink]="['/login']"> inicia sesion.</a>
+    </div>
+    <!-- muestra mensaje si es fallido -->
+     <div class="alert alert-danger" *ngIf="status == 'Error'">
+        Registro erroneo
+    </div>
+    
+   <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)" class="form-signin">
+     <div class="panel panel-primary">
+       <div class="panel-heading">
+     <h2>{{titulo}}</h2>
+       </div>
+       <div class="panel-body">
+        <p>
+          <p>
+            <label>Nombre</label>
+            <!-- #name es ngModel, que lo unimos con user.name-->
+            <input type="text" name="name" #name="ngModel" [(ngModel)]="user.name" class="form-control" required />
+            <!--nombre vacio valid y que haya sido editado tocado -->
+            <span *ngIf="!name.valid && name.touched">
+                El nombre es obligatorio
+            </span>
+        </p>
+         <p>
+            <label>Apellidos</label>
+            <input type="text" name="surname" #surname="ngModel" [(ngModel)]="user.surname" class="form-control" required/>
+            <span *ngIf="!surname.valid && surname.touched">
+                El apellido es obligatorio
+            </span>
+        </p>
+        <p>
+            <label>Numero de empleado</label>
+            <input type="text" name="numero" #numero="ngModel" [(ngModel)]="user.numero" class="form-control" required/>
+            <span *ngIf="!numero.valid && numero.touched">
+                El número es obligatorio
+            </span>
+        </p>
+        <!--
+         <p>
+            <label>Correo electronico</label>
+            <input type="email" name="email" #email="ngModel" [(ngModel)]="user.email" class="form-control" required/>
+            <span *ngIf="!email.valid && email.touched">
+                El correo es obligatorio
+            </span>
+        </p>
+        -->
+         <p>
+            <label>Contraseña</label>
+            <input type="password" name="password" #password="ngModel" [(ngModel)]="user.password" class="form-control" required/>
+            <span *ngIf="!password.valid && password.touched">
+                La contraseña es obligatoria
+            </span> 
+        </p>
+        <p>
+              <label>Departamento</label>
+              <select class="form-control" name="departamento" #departamento="ngModel" [(ngModel)]="user.departamento" required>
+              <option>Calidad</option>
+              <option>Desarrollo</option>
+              <option>Producción</option>
+              </select>
+        </p>
+            <!--boton de submit, deshabilitado si el registerform no es valido -->
+            <input type="submit" value="Registrate" class="btn btn-lg btn-primary btn-block" [disabled]="!registerForm.form.valid"/>
+            </div>
+       </div>
+   </form>
+</div>
+
+           
+

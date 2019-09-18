@@ -1,0 +1,414 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <div class="row">
+      <div class="col">
+      </div>
+      <div class="col">
+        <h2 align="center">Código: {{formula.codigo}}</h2>
+      </div>
+      <div class="col">
+        <h4 align="right">Lote: {{formula.lote}}</h4>
+        <h5 align="right">Auxiliar de CC: <strong>{{formula.usuario?.name}}</strong></h5>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      
+
+        <div class="panel panel-primary" *ngFor="let cambio of cambios">
+          <div class="panel-heading">
+              <h4>Análisis {{ cambio.cuentaAnalisis }} </h4>
+          </div>
+          <div class="panel-body">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item" *ngIf = cambio?.viscosidad >Viscosidad: {{cambio.viscosidad}}</li>
+              <li class="list-group-item" *ngIf = cambio?.densidad >Densidad: {{cambio.densidad}}</li>
+              <li class="list-group-item" *ngIf = cambio?.solidos >Solidos totales: {{cambio?.solidos}}</li>
+              <li class="list-group-item" *ngIf = cambio?.ph >PH: {{cambio?.ph}}</li>
+              <li class="list-group-item" *ngIf = cambio?.finura >Finura: {{cambio?.finura}}</li>
+              <li class="list-group-item" *ngIf = cambio?.color >Color: {{cambio?.color}}</li>
+              <li class="list-group-item" *ngIf = cambio?.poder >Poder cubriente: {{cambio?.poder}}</li>
+              <li class="list-group-item" *ngIf = cambio?.dureza >Dureza: {{cambio?.dureza}}</li>
+              <li class="list-group-item" *ngIf = cambio?.brillo >Brillo: {{cambio?.brillo}}</li>
+              <li class="list-group-item" *ngIf = cambio?.secadot >Secado tacto: {{cambio?.secadot}}</li>
+              <li class="list-group-item" *ngIf = cambio?.secadod >Secado duro: {{cambio?.secadod}}</li>
+              <li class="list-group-item" *ngIf = cambio?.impacto >Impacto: {{cambio?.impacto}}</li>
+              <li class="list-group-item" *ngIf = cambio?.adherencia >Adherencia: {{cambio?.adherencia}}</li>
+              <li class="list-group-item" *ngIf = cambio?.humedad >Humedad: {{cambio?.humedad}}</li>
+              <li class="list-group-item" *ngIf = cambio?.flexibilidad >Flexibilidad: {{cambio?.flexibilidad}}</li>
+              <li class="list-group-item" *ngIf = cambio?.peso >Peso bote: {{cambio?.peso}}</li>
+              <li class="list-group-item" *ngIf = cambio?.compatibilidad >Compatibilidad: {{cambio?.compatibilidad}}</li>
+              <li class="list-group-item" *ngIf = formula?.operador >Operador: {{formula?.operador}}</li>
+              <li class="list-group-item" *ngIf = cambio?.status >Estatus: {{cambio?.status}}</li>
+              <li class="list-group-item">Fecha: {{cambio?.fecha}}</li>
+              <li class="list-group-item">Hora: {{cambio?.hora}} </li>
+              <textarea class="form-control"  class="alert alert-success" *ngIf = "cambio.status == 'Aprobado' " 
+              placeholder="Comentarios" style="margin-top: 0px; height: 255px;" disabled >{{cambio?.comentario}}</textarea>
+              <textarea class="form-control"  class="alert alert-danger" *ngIf = "cambio.status == 'Rechazado' " 
+              placeholder="Comentarios" style="margin-top: 0px; height: 255px;" disabled >{{cambio?.comentario}}</textarea>
+              <textarea class="form-control"  class="alert" *ngIf = "cambio.status == 'Pasta' " 
+              placeholder="Comentarios" style="margin-top: 0px; height: 255px;" disabled >{{cambio?.comentario}}</textarea>
+              <li class="list-group-item">Analizado por: {{cambio?.usuario.name}} </li>
+            </ul>
+          </div>
+      </div>
+       </div> 
+  </div>
+  <div class="container">
+  <a [routerLink]="['/agrega-cambio', formula._id]" type="button" class="btn btn-primary btn-lg btn-block" 
+  *ngIf="!edita && identity.role != 1">
+  Editar </a>
+  <a [routerLink]="['/edita']" type="button" class="btn btn-secundary btn-lg btn-block">Volver</a>
+  <P>
+  </div>
+</div>
+
+<!--
+          <div class="panel panel-primary">
+          <div class="panel-heading">
+              <h4>Análisis 1 </h4>
+          </div>
+          <div class="panel-body">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item" *ngIf = formula.cambio?.viscosidad >Viscosidad: {{formula.cambio?.viscosidad}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio?.densidad >Densidad: {{formula.cambio?.densidad}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio?.solidos >Solidos totales: {{formula.cambio?.solidos}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio?.ph >PH: {{formula.cambio?.ph}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio?.finura >Finura: {{formula.cambio?.finura}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio?.color >Color: {{formula.cambio?.color}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio?.poder >Poder cubriente: {{formula.cambio?.poder}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio?.dureza >Dureza: {{formula.cambio?.dureza}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio?.brillo >Brillo: {{formula.cambio?.brillo}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio?.secadot >Secado tacto: {{formula.cambio?.secadot}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio?.secadod >Secado duro: {{formula.cambio?.secadod}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio?.impacto >Impacto: {{formula.cambio?.impacto}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio?.adherencia >Adherencia: {{formula.cambio?.adherencia}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio?.humedad >Humedad: {{formula.cambio?.humedad}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio?.flexibilidad >Flexibilidad: {{formula.cambio?.flexibilidad}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio?.peso >Peso bote: {{formula.cambio?.peso}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio?.compatibilidad >Compatibilidad: {{formula.cambio?.compatibilidad}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio?.status >Estatus: {{formula.cambio?.status}}</li>
+              <li class="list-group-item">Fecha: {{formula.cambio?.fecha}}</li>
+              <li class="list-group-item">Hora: {{formula.cambio?.hora}} </li>
+              <textarea class="form-control"  class="alert alert-success" 
+              placeholder="Comentarios" style="margin-top: 0px; height: 255px;" disabled >{{formula.cambio?.comentario}}</textarea>
+            </ul>
+          </div>
+      </div>
+      <div class="panel panel-primary" *ngIf=formula.cambio1>
+          <div class="panel-heading">
+              <h4>Análisis 2</h4>
+          </div>
+          <div class="panel-body">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item" *ngIf = formula.cambio1.viscosidad >Viscosidad: {{formula.cambio1.viscosidad}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio1.densidad >Densidad: {{formula.cambio1.densidad}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio1.solidos >Solidos totales: {{formula.cambio1.solidos}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio1.ph >PH: {{formula.cambio1.ph}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio1.finura >Finura: {{formula.cambio1.finura}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio1.color >Color: {{formula.cambio1.color}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio1.poder >Poder cubriente: {{formula.cambio1.poder}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio1.dureza >Dureza: {{formula.cambio1.dureza}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio1.brillo >Brillo: {{formula.cambio1.brillo}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio1.secadot >Secado tacto: {{formula.cambio1.secadot}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio1.secadod >Secado duro: {{formula.cambio1.secadod}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio1.impacto >Impacto: {{formula.cambio1.impacto}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio1.adherencia >Adherencia: {{formula.cambio1.adherencia}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio1.humedad >Humedad: {{formula.cambio1.humedad}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio1.flexibilidad >Flexibilidad: {{formula.cambio1.flexibilidad}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio1.peso >Peso bote: {{formula.cambio1.peso}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio1.compatibilidad >Compatibilidad: {{formula.cambio1.compatibilidad}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio1.status >Estatus: {{formula.cambio1.status}}</li>
+              <li class="list-group-item">Fecha: {{formula.cambio1.fecha}}</li>
+              <li class="list-group-item">Hora: {{formula.cambio1.hora}} </li>
+              <textarea class="form-control"  
+              placeholder="Comentarios" style="margin-top: 0px; height: 255px;" disabled >{{formula.cambio1.comentario}}</textarea>
+            </ul>
+          </div>
+      </div>
+      <div class="panel panel-primary" *ngIf=formula.cambio2>
+          <div class="panel-heading">
+              <h4>Análisis 3</h4>
+          </div>
+          <div class="panel-body">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item" *ngIf = formula.cambio2.viscosidad>Viscosidad: {{formula.cambio2.viscosidad}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio2.densidad >Densidad: {{formula.cambio2.densidad}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio2.solidos >Solidos totales: {{formula.cambio2.solidos}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio2.ph >PH: {{formula.cambio2.ph}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio2.finura >Finura: {{formula.cambio2.finura}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio2.color >Color: {{formula.cambio2.color}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio2.poder >Poder cubriente: {{formula.cambio2.poder}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio2.dureza >Dureza: {{formula.cambio2.dureza}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio2.brillo >Brillo: {{formula.cambio2.brillo}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio2.secadot >Secado tacto: {{formula.cambio2.secadot}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio2.secadod >Secado duro: {{formula.cambio2.secadod}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio2.impacto >Impacto: {{formula.cambio2.impacto}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio2.adherencia >Adherencia: {{formula.cambio2.adherencia}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio2.humedad >Humedad: {{formula.cambio2.humedad}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio2.flexibilidad >Flexibilidad: {{formula.cambio2.flexibilidad}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio2.peso >Peso bote: {{formula.cambio2.peso}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio2.compatibilidad >Compatibilidad: {{formula.cambio2.compatibilidad}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio2.status >Estatus: {{formula.cambio2.status}}</li>
+              <li class="list-group-item">Fecha: {{formula.cambio2.fecha}}</li>
+              <li class="list-group-item">Hora: {{formula.cambio2.hora}} </li>
+              <textarea class="form-control"  
+              placeholder="Comentarios" style="margin-top: 0px; height: 255px;" disabled >{{formula.cambio2.comentario}}</textarea>
+            </ul>
+          </div>
+      </div>
+      <div class="panel panel-primary" *ngIf=formula.cambio3>
+          <div class="panel-heading">
+              <h4>Análisis 4</h4>
+          </div>
+          <div class="panel-body">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item" *ngIf = formula.cambio3.viscosidad >Viscosidad: {{formula.cambio3.viscosidad}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio3.densidad >Densidad: {{formula.cambio3.densidad}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio3.solidos >Solidos totales: {{formula.cambio3.solidos}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio3.ph >PH: {{formula.cambio3.ph}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio3.finura >Finura: {{formula.cambio3.finura}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio3.color >Color: {{formula.cambio3.color}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio3.poder >Poder cubriente: {{formula.cambio3.poder}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio3.dureza >Dureza: {{formula.cambio3.dureza}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio3.brillo >Brillo: {{formula.cambio3.brillo}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio3.secadot >Secado tacto: {{formula.cambio3.secadot}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio3.secadod >Secado duro: {{formula.cambio3.secadod}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio3.impacto >Impacto: {{formula.cambio3.impacto}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio3.adherencia >Adherencia: {{formula.cambio3.adherencia}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio3.humedad >Humedad: {{formula.cambio3.humedad}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio3.flexibilidad >Flexibilidad: {{formula.cambio3.flexibilidad}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio3.peso >Peso bote: {{formula.cambio3.peso}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio3.compatibilidad >Compatibilidad: {{formula.cambio3.compatibilidad}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio3.status >Estatus: {{formula.cambio3.status}}</li>
+              <li class="list-group-item">Fecha: {{formula.cambio3.fecha}}</li>
+              <li class="list-group-item">Hora: {{formula.cambio3.hora}} </li>
+              <textarea class="form-control"  
+              placeholder="Comentarios" style="margin-top: 0px; height: 255px;" disabled >{{formula.cambio3.comentario}}</textarea>
+            </ul>
+          </div>
+      </div>
+      <div class="panel panel-primary" *ngIf=formula.cambio4>
+          <div class="panel-heading">
+              <h4>Análisis 5</h4>
+          </div>
+          <div class="panel-body">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item" *ngIf = formula.cambio4.viscosidad >Viscosidad: {{formula.cambio4.viscosidad}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio4.densidad >Densidad: {{formula.cambio4.densidad}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio4.solidos >Solidos totales: {{formula.cambio4.solidos}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio4.ph >PH: {{formula.cambio4.ph}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio4.finura >Finura: {{formula.cambio4.finura}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio4.color >Color: {{formula.cambio4.color}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio4.poder >Poder cubriente: {{formula.cambio4.poder}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio4.dureza >Dureza: {{formula.cambio4.dureza}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio4.brillo >Brillo: {{formula.cambio4.brillo}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio4.secadot >Secado tacto: {{formula.cambio4.secadot}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio4.secadod >Secado duro: {{formula.cambio4.secadod}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio4.impacto >Impacto: {{formula.cambio4.impacto}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio4.adherencia >Adherencia: {{formula.cambio4.adherencia}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio4.humedad >Humedad: {{formula.cambio4.humedad}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio4.flexibilidad >Flexibilidad: {{formula.cambio4.flexibilidad}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio4.peso >Peso bote: {{formula.cambio4.peso}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio4.compatibilidad >Compatibilidad: {{formula.cambio4.compatibilidad}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio4.status >Estatus: {{formula.cambio4.status}}</li>
+             <li class="list-group-item">Fecha: {{formula.cambio4.fecha}}</li>
+              <li class="list-group-item">Hora: {{formula.cambio4.hora}} </li>
+              <textarea class="form-control"  
+              placeholder="Comentarios" style="margin-top: 0px; height: 255px;" disabled >{{formula.cambio4.comentario}}</textarea>
+            </ul>
+          </div>
+      </div>
+      <div class="panel panel-primary" *ngIf=formula.cambio5>
+          <div class="panel-heading">
+              <h4>Análisis 6</h4>
+          </div>
+          <div class="panel-body">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item" *ngIf = formula.cambio5.viscosidad >Viscosidad: {{formula.cambio5.viscosidad}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio5.densidad >Densidad: {{formula.cambio5.densidad}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio5.solidos >Solidos totales: {{formula.cambio5.solidos}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio5.ph >PH: {{formula.cambio5.ph}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio5.finura >Finura: {{formula.cambio5.finura}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio5.color >Color: {{formula.cambio5.color}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio5.poder >Poder cubriente: {{formula.cambio5.poder}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio5.dureza >Dureza: {{formula.cambio5.dureza}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio5.brillo >Brillo: {{formula.cambio5.brillo}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio5.secadot >Secado tacto: {{formula.cambio5.secadot}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio5.secadod >Secado duro: {{formula.cambio5.secadod}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio5.impacto >Impacto: {{formula.cambio5.impacto}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio5.adherencia >Adherencia: {{formula.cambio5.adherencia}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio5.humedad >Humedad: {{formula.cambio5.humedad}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio5.flexibilidad >Flexibilidad: {{formula.cambio5.flexibilidad}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio5.peso >Peso bote: {{formula.cambio5.peso}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio5.compatibilidad >Compatibilidad: {{formula.cambio5.compatibilidad}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio5.status >Estatus: {{formula.cambio5.status}}</li>
+              <li class="list-group-item">Fecha: {{formula.cambio5.fecha}}</li>
+              <li class="list-group-item">Hora: {{formula.cambio5.hora}} </li>
+              <textarea class="form-control"  
+              placeholder="Comentarios" style="margin-top: 0px; height: 255px;" disabled >{{formula.cambio5.comentario}}</textarea>
+            </ul>
+          </div>
+      </div>
+      <div class="panel panel-primary" *ngIf=formula.cambio6>
+          <div class="panel-heading">
+              <h4>Análisis 7</h4>
+          </div>
+          <div class="panel-body">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item" *ngIf = formula.cambio6.viscosidad >Viscosidad: {{formula.cambio6.viscosidad}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio6.densidad >Densidad: {{formula.cambio6.densidad}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio6.solidos >Solidos totales: {{formula.cambio6.solidos}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio6.ph >PH: {{formula.cambio6.ph}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio6.finura >Finura: {{formula.cambio6.finura}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio6.color >Color: {{formula.cambio6.color}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio6.poder >Poder cubriente: {{formula.cambio6.poder}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio6.dureza >Dureza: {{formula.cambio6.dureza}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio6.brillo >Brillo: {{formula.cambio6.brillo}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio6.secadot >Secado tacto: {{formula.cambio6.secadot}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio6.secadod >Secado duro: {{formula.cambio6.secadod}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio6.impacto >Impacto: {{formula.cambio6.impacto}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio6.adherencia >Adherencia: {{formula.cambio6.adherencia}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio6.humedad >Humedad: {{formula.cambio6.humedad}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio6.flexibilidad >Flexibilidad: {{formula.cambio6.flexibilidad}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio6.peso >Peso bote: {{formula.cambio6.peso}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio6.compatibilidad >Compatibilidad: {{formula.cambio6.compatibilidad}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio6.status >Estatus: {{formula.cambio6.status}}</li>
+              <li class="list-group-item">Fecha: {{formula.cambio6.fecha}}</li>
+              <li class="list-group-item">Hora: {{formula.cambio6.hora}} </li>
+              <textarea class="form-control"  
+              placeholder="Comentarios" style="margin-top: 0px; height: 255px;" disabled >{{formula.cambio6.comentario}}</textarea>
+            </ul>
+          </div>
+      </div>
+      <div class="panel panel-primary" *ngIf=formula.cambio7>
+          <div class="panel-heading">
+              <h4>Análisis 8</h4>
+          </div>
+          <div class="panel-body">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item" *ngIf = formula.cambio7.viscosidad >Viscosidad: {{formula.cambio7.viscosidad}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio7.densidad >Densidad: {{formula.cambio7.densidad}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio7.solidos >Solidos totales: {{formula.cambio7.solidos}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio7.ph >PH: {{formula.cambio7.ph}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio7.finura >Finura: {{formula.cambio7.finura}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio7.color >Color: {{formula.cambio7.color}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio7.poder >Poder cubriente: {{formula.cambio7.poder}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio7.dureza >Dureza: {{formula.cambio7.dureza}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio7.brillo >Brillo: {{formula.cambio7.brillo}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio7.secadot >Secado tacto: {{formula.cambio7.secadot}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio7.secadod >Secado duro: {{formula.cambio7.secadod}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio7.impacto >Impacto: {{formula.cambio7.impacto}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio7.adherencia >Adherencia: {{formula.cambio7.adherencia}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio7.humedad >Humedad: {{formula.cambio7.humedad}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio7.flexibilidad >Flexibilidad: {{formula.cambio7.flexibilidad}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio7.peso >Peso bote: {{formula.cambio7.peso}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio7.compatibilidad >Compatibilidad: {{formula.cambio7.compatibilidad}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio7.status >Estatus: {{formula.cambio7.status}}</li>
+              <li class="list-group-item">Fecha: {{formula.cambio7.fecha}}</li>
+              <li class="list-group-item">Hora: {{formula.cambio7.hora}} </li>
+              <textarea class="form-control"  
+              placeholder="Comentarios" style="margin-top: 0px; height: 255px;" disabled >{{formula.cambio7.comentario}}</textarea>
+            </ul>
+          </div>
+      </div>
+      <div class="panel panel-primary" *ngIf=formula.cambio8>
+          <div class="panel-heading">
+              <h4>Análisis 9</h4>
+          </div>
+          <div class="panel-body">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item" *ngIf = formula.cambio8.viscosidad >Viscosidad: {{formula.cambio8.viscosidad}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio8.densidad >Densidad: {{formula.cambio8.densidad}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio8.solidos >Solidos totales: {{formula.cambio8.solidos}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio8.ph >PH: {{formula.cambio8.ph}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio8.finura >Finura: {{formula.cambio8.finura}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio8.color >Color: {{formula.cambio8.color}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio8.poder >Poder cubriente: {{formula.cambio8.poder}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio8.dureza >Dureza: {{formula.cambio8.dureza}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio8.brillo >Brillo: {{formula.cambio8.brillo}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio8.secadot >Secado tacto: {{formula.cambio8.secadot}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio8.secadod >Secado duro: {{formula.cambio8.secadod}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio8.impacto >Impacto: {{formula.cambio8.impacto}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio8.adherencia >Adherencia: {{formula.cambio8.adherencia}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio8.humedad >Humedad: {{formula.cambio8.humedad}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio8.flexibilidad >Flexibilidad: {{formula.cambio8.flexibilidad}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio8.peso >Peso bote: {{formula.cambio8.peso}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio8.compatibilidad >Compatibilidad: {{formula.cambio8.compatibilidad}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio8.status >Estatus: {{formula.cambio8.status}}</li>
+              <li class="list-group-item">Fecha: {{formula.cambio8.fecha}}</li>
+              <li class="list-group-item">Hora: {{formula.cambio8.hora}}</li>
+              <textarea class="form-control"  
+              placeholder="Comentarios" style="margin-top: 0px; height: 255px;" disabled >{{formula.cambio8.comentario}}</textarea>
+            </ul>
+          </div>
+      </div>
+      <div class="panel panel-primary" *ngIf=formula.cambio9>
+          <div class="panel-heading">
+              <h4>Análisis 10</h4>
+          </div>
+          <div class="panel-body">
+            <ul class="list-group list-group-flush">
+              <<li class="list-group-item" *ngIf = formula.cambio9.viscosidad >Viscosidad: {{formula.cambio9.viscosidad}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio9.densidad >Densidad: {{formula.cambio9.densidad}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio9.solidos >Solidos totales: {{formula.cambio9.solidos}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio9.ph >PH: {{formula.cambio9.ph}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio9.finura >Finura: {{formula.cambio9.finura}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio9.color >Color: {{formula.cambio9.color}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio9.poder >Poder cubriente: {{formula.cambio9.poder}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio9.dureza >Dureza: {{formula.cambio9.dureza}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio9.brillo >Brillo: {{formula.cambio9.brillo}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio9.secadot >Secado tacto: {{formula.cambio9.secadot}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio9.secadod >Secado duro: {{formula.cambio9.secadod}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio9.impacto >Impacto: {{formula.cambio9.impacto}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio9.adherencia >Adherencia: {{formula.cambio9.adherencia}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio9.humedad >Humedad: {{formula.cambio9.humedad}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio9.flexibilidad >Flexibilidad: {{formula.cambio9.flexibilidad}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio9.peso >Peso bote: {{formula.cambio9.peso}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio9.compatibilidad >Compatibilidad: {{formula.cambio9.compatibilidad}}</li>
+              <li class="list-group-item" *ngIf = formula.cambio9.status >Estatus: {{formula.cambio9.status}}</li>
+              <li class="list-group-item">Fecha: {{formula.cambio9.fecha}}</li>
+              <li class="list-group-item">Hora: {{formula.cambio9.hora}} </li>
+              <textarea class="form-control"  
+              placeholder="Comentarios" style="margin-top: 0px; height: 255px;" disabled >{{formula.cambio9.comentario}}</textarea>
+            </ul>
+          </div>
+          
+      </div>
+      -->
+   
+
+<!--
+<div class="panel panel-primary" *ngFor="let cambio of cambios">
+          <div class="panel-heading">
+              <h4>Análisis {{ cambio.cuentaAnalisis }} </h4>
+          </div>
+          <div class="panel-body">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item" *ngIf = cambio?.viscosidad >Viscosidad: {{cambio.viscosidad}}</li>
+              <li class="list-group-item" *ngIf = cambio?.densidad >Densidad: {{cambio.densidad}}</li>
+              <li class="list-group-item" *ngIf = cambio?.solidos >Solidos totales: {{cambio?.solidos}}</li>
+              <li class="list-group-item" *ngIf = cambio?.ph >PH: {{cambio?.ph}}</li>
+              <li class="list-group-item" *ngIf = cambio?.finura >Finura: {{cambio?.finura}}</li>
+              <li class="list-group-item" *ngIf = cambio?.color >Color: {{cambio?.color}}</li>
+              <li class="list-group-item" *ngIf = cambio?.poder >Poder cubriente: {{cambio?.poder}}</li>
+              <li class="list-group-item" *ngIf = cambio?.dureza >Dureza: {{cambio?.dureza}}</li>
+              <li class="list-group-item" *ngIf = cambio?.brillo >Brillo: {{cambio?.brillo}}</li>
+              <li class="list-group-item" *ngIf = cambio?.secadot >Secado tacto: {{cambio?.secadot}}</li>
+              <li class="list-group-item" *ngIf = cambio?.secadod >Secado duro: {{cambio?.secadod}}</li>
+              <li class="list-group-item" *ngIf = cambio?.impacto >Impacto: {{cambio?.impacto}}</li>
+              <li class="list-group-item" *ngIf = cambio?.adherencia >Adherencia: {{cambio?.adherencia}}</li>
+              <li class="list-group-item" *ngIf = cambio?.humedad >Humedad: {{cambio?.humedad}}</li>
+              <li class="list-group-item" *ngIf = cambio?.flexibilidad >Flexibilidad: {{cambio?.flexibilidad}}</li>
+              <li class="list-group-item" *ngIf = cambio?.peso >Peso bote: {{cambio?.peso}}</li>
+              <li class="list-group-item" *ngIf = cambio?.compatibilidad >Compatibilidad: {{cambio?.compatibilidad}}</li>
+              <li class="list-group-item" *ngIf = cambio?.status >Estatus: {{cambio?.status}}</li>
+              <li class="list-group-item">Fecha: {{cambio?.fecha}}</li>
+              <li class="list-group-item">Hora: {{cambio?.hora}} </li>
+              <textarea class="form-control"  class="alert alert-success" 
+              placeholder="Comentarios" style="margin-top: 0px; height: 255px;" disabled >{{cambio?.comentario}}</textarea>
+            </ul>
+          </div>
+      </div> -->
+      

@@ -1,0 +1,12 @@
+.buscaForm {
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: auto;
+}
+
+.form-control {
+    padding: 3px 4px;
+    width: 100%;  
+    height: 100%;
+    }

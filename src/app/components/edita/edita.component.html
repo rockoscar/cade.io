@@ -1,0 +1,148 @@
+
+<form #agregaForm="ngForm" class="agregaform">
+  <div class="panel panel-primary">
+       <div class="panel-heading">
+     <h3>Agrega el ajuste</h3>
+       </div>
+       <div class="panel-body">
+       <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label class="form-control">Código: {{formula.codigo}}</label>	
+          </div>
+          <div class="form-group">
+            <label class="form-control">Lote: {{formula.lote}}</label>	
+          </div>
+          <div class="form-label-group">
+            <input type="text" name="viscosidad" #viscosidad="ngModel" [(ngModel)]="cambio.viscosidad" class="form-control" placeholder="Vicosidad"/>
+            <label for="viscosidad">Vicosidad</label>
+          </div>
+          <div class="form-label-group">
+            <input type="text" name="densidad" #densidad="ngModel" [(ngModel)]="cambio.densidad" class="form-control" placeholder="Densidad"/>
+            <label for="densidad">Densidad</label>
+          </div>
+          <div class="form-label-group">
+            <input type="text" name="solidos" #solidos="ngModel" [(ngModel)]="cambio.solidos" class="form-control" placeholder="Solidos totales"/>
+            <label for="solidos">Solidos totales</label>
+          </div>
+          <div class="form-label-group">
+            <input type="text" name="ph" #ph="ngModel" [(ngModel)]="cambio.ph" class="form-control" placeholder="PH"/>
+            <label for="ph">PH</label>
+          </div>
+          <div class="form-label-group">
+            <input type="text" name="finura" #finura="ngModel" [(ngModel)]="cambio.finura" class="form-control" placeholder="Finura"/>
+            <label for="finura">Finura</label>
+          </div>
+           <div class="form-group">
+            <label>Color</label>
+              <select class="form-control" name="color" #color="ngModel" [(ngModel)]="cambio.color" required>
+              <option>Ok</option>
+              <option>Rechazado tono</option>
+              <option>Rechazado velo</option>
+              <option>Rechazado apariencia</option>
+              </select>
+          </div>
+          <div class="form-label-group">
+            <input type="text" name="poder" #poder="ngModel" [(ngModel)]="cambio.poder" class="form-control" placeholder="Poder cubriente"/>
+            <label for="poder">Poder cubriente</label>
+          </div>
+          <div class="form-label-group">
+            <input type="text" name="dureza" #dureza="ngModel" [(ngModel)]="cambio.dureza" class="form-control" placeholder="Dureza"/>
+            <label for="dureza">Dureza</label>
+          </div>
+          <div class="form-label-group">
+            <input type="text" name="brillo" #brillo="ngModel" [(ngModel)]="cambio.brillo" class="form-control" placeholder="Brillo"/>
+            <label for="brillo">Brillo</label>
+          </div>
+          <label>Secado tacto</label><!-- empieza la seccion para secado tacto -->
+          <div class="row">
+            <div class="col-sm-5">
+              <div class="form-group">
+                <input type="text" name="secadotacto" #secadotacto="ngModel" [(ngModel)]="cambio.secadot" class="form-control" placeholder=" -  -"/>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group">
+                  <select class="form-control" name="secadotfrec" #secadotfrec="ngModel" [(ngModel)]="secadotf" required>
+                  <option>Hr</option>
+                  <option>Min</option>
+                  </select>
+              </div>
+            </div>
+          </div>
+          <label>Secado duro</label><!-- empieza la seccion para secado tacto -->
+          <div class="row">
+           <div class="col-sm-5">
+              <div class="form-group">
+                <input type="text" name="secadod" #secadod="ngModel" [(ngModel)]="cambio.secadod" class="form-control" placeholder=" -  -"/>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group">
+                  <select class="form-control" name="secadotfrecduro" #secadotfrecduro="ngModel" [(ngModel)]="secadotfrecd" required>
+                  <option>Hr</option>
+                  <option>Min</option>
+                  </select>
+              </div>
+            </div>
+        </div>
+        </div>
+        <div class="col">
+          <div class="form-label-group">
+            <input type="text" name="impacto" #impacto="ngModel" [(ngModel)]="cambio.impacto" class="form-control" placeholder="Impacto"/>
+            <label for="impacto">Impacto</label>
+          </div>
+          <div class="form-label-group">
+            <input type="text" name="adherencia" #adherencia="ngModel" [(ngModel)]="cambio.adherencia" class="form-control" placeholder="Adherencia"/>
+            <label for="adherencia">Adherencia</label>
+          </div>
+          <div class="form-label-group">
+            <input type="text" name="humedad" #humedad="ngModel" [(ngModel)]="cambio.humedad" class="form-control" placeholder="Humedad"/>
+            <label for="humedad">Humedad</label>
+          </div>
+          <div class="form-label-group">
+            <input type="text" name="flexibilidad" #flexibilidad="ngModel" [(ngModel)]="cambio.flexibilidad" class="form-control" placeholder="Flexibilidad" />
+            <label for="flexibilidad">Flexibilidad</label>
+          </div>
+          <div class="form-label-group">
+            <input type="text" name="peso" #peso="ngModel" [(ngModel)]="cambio.peso" class="form-control" placeholder="Peso bote"/>
+            <label for="peso">Peso bote</label>
+          </div>
+          <div class="form-label-group">
+            <input type="text" name="compatibilidad" #compatibilidad="ngModel" [(ngModel)]="cambio.compatibilidad" class="form-control" placeholder="Compatibilidad"/>
+            <label for="compatibilidad">Compatibilidad</label>
+          </div>
+          <div class="form-group">
+            <label>Estatus</label>
+              <select class="form-control" name="status" #status="ngModel" [(ngModel)]="cambio.status" required>
+              <option>Aprobado</option>
+              <option>Rechazado</option>
+              </select>
+          </div>
+          <div class="form-group" *ngIf = "cambio.status=='Aprobado'">
+            <textarea class="form-control" name="comentarios" #comentarios="ngModel" [(ngModel)]="cambio.comentario" class="alert alert-success" 
+            placeholder="Comentarios" style="margin-top: 0px; height: 255px;"></textarea>
+          </div>
+          <div class="form-group" *ngIf = "cambio.status=='Rechazado'">
+            <textarea class="form-control" name="comentarios" #comentarios="ngModel" [(ngModel)]="cambio.comentario" class="alert alert-danger" 
+            placeholder="Comentarios" style="margin-top: 0px; height: 255px;"></textarea>
+          </div>
+        </div>
+      </div>
+        <button (click)="mandaCambio()"
+        class="btn btn-lg btn-primary btn-block" 
+        [disabled]="!cambio.status || !cambio.comentario">
+        Hecho
+        </button>
+   </div>
+</div>
+</form>
+
+
+
+
+     
+         
+       
+     
+     

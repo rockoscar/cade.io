@@ -1,0 +1,12 @@
+.formulario{
+  
+align-items: center;
+width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: auto;
+   
+}
+.col-lg-10{
+  margin-bottom: 10px;
+}
